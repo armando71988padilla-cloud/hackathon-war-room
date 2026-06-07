@@ -87,6 +87,10 @@ def main() -> int:
     assert "data:image/png;base64," in dashboard_text
     assert "__MOCKUP_IMAGE__" not in dashboard_text
     assert "action-hotspots" in dashboard_text
+    assert "command-drawer" in dashboard_text
+    assert "Settings Command Drawer" in dashboard_text
+    assert "Command Links" in dashboard_text
+    assert "Quick-launch proof artifacts" in dashboard_text
 
     expected_dashboard_links = [
         "href=\"#war-room\"",
