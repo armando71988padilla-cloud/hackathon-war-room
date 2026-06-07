@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Hackathon War Room is a deterministic local command center for hackathon builders. It converts synthetic project profile data and challenge rule summaries into readiness scoring, judge-facing artifacts, a dark dashboard, and final submission guidance.
+Hackathon War Room is a deterministic local command center for hackathon builders. It converts synthetic project profile data and challenge rule summaries into readiness scoring, judge-facing artifacts, a dark dashboard, full launch bundle, and final submission guidance.
 
 ## Runtime Flow
 
@@ -11,7 +11,8 @@ Hackathon War Room is a deterministic local command center for hackathon builder
 3. Evaluate readiness with `hackathon_war_room.core.evaluate`.
 4. Export `demo/output/judge_packet.md` with `hackathon_war_room.core.export_packet`.
 5. Export `demo/output/project_readiness_dashboard.html` with `hackathon_war_room.core.dashboard`.
-6. Verify the full demo path with `tests/test_demo_workflow.py`.
+6. Export launch bundle artifacts with `hackathon_war_room.core.launch_bundle`.
+7. Verify the full demo path with `tests/test_demo_workflow.py`.
 
 ## Commands
 
@@ -28,11 +29,31 @@ PYTHONPATH="$PWD/src" python3 tests/test_demo_workflow.py
 - `core/evaluate.py`: readiness scoring and Launch Gate verdict logic.
 - `core/export_packet.py`: judge packet markdown exporter.
 - `core/dashboard.py`: dark readiness dashboard HTML exporter.
-- `tests/test_demo_workflow.py`: deterministic smoke test covering CLI, score, verdict, and artifact generation.
+- `core/launch_bundle.py`: full launch bundle exporter for launch packet, checklist, Copilot summary, and release manifest.
+- `tests/test_demo_workflow.py`: deterministic smoke test covering CLI, score, verdict, dashboard panels, and artifact generation.
 
 ## Microsoft IQ Alignment
 
-The project aligns with Foundry IQ by grounding output in project context, challenge requirements, judging criteria, artifact status, risk signals, and safety posture. It does not claim live Foundry deployment. The current build uses a deterministic local fallback for reliable judging.
+Hackathon War Room aligns with Foundry IQ through a grounded reasoning pattern: project context and rule summaries are treated as the trusted knowledge base, then transformed into cited, inspectable project guidance and artifacts.
+
+The current build does not claim a live Microsoft Foundry deployment. Instead, it provides a deterministic local fallback that demonstrates the same core product behavior: grounding outputs in known context, reducing hallucination risk, and making every recommendation inspectable through generated artifacts.
+
+### Grounding Sources
+
+- synthetic project profile
+- synthetic challenge rules summary
+- judging criteria and track requirements
+- artifact readiness state
+- known risks
+- safety and secret hygiene posture
+
+### Foundry-Ready Extension Path
+
+A future Foundry or Agent Framework integration could replace local JSON inputs with managed knowledge sources, connected project repositories, event rules, team documents, or challenge briefs. The current design keeps those boundaries explicit so the project remains safe and reliable for public hackathon judging.
+
+## Creative Apps Fit
+
+Hackathon War Room is a creative productivity application. It helps builders transform raw project work into a polished story, dashboard, launch packet, and submission plan.
 
 ## Safety Posture
 
@@ -40,4 +61,4 @@ The demo uses synthetic data only. No customer data, private repository contents
 
 ## Freeze Discipline
 
-After smoke, CI, README, demo script, dashboard, judge packet, and final checklist are ready, feature work should freeze. Remaining work should focus on screenshots, video recording, portal copy, and final safety review.
+Video and portal submission happen last. After the final feature pass, remaining work should focus on screenshot capture, demo video recording, portal copy, safety review, and final release tagging.

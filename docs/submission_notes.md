@@ -6,7 +6,7 @@ Turn hackathon chaos into a judge ready launch packet.
 
 ## Portal Description Under 1000 Characters
 
-Hackathon War Room is an AI assisted creative command center for hackathon builders. It helps teams turn scattered project state, challenge rules, judging criteria, risks, and missing assets into a clean launch plan. The tool scores submission readiness, shows a Launch Gate verdict, highlights what judges should notice through Judge Lens, and exports a judge packet plus a dark readiness dashboard. It aligns with Foundry IQ by grounding guidance in project context, rules summaries, artifact status, and safety signals. The demo uses synthetic data only, includes a deterministic local CLI, GitHub Actions smoke test, Copilot build log, architecture notes, demo script, and final checklist so builders can stop guessing, stop overbuilding, and ship stronger submissions.
+Hackathon War Room is an AI assisted creative command center for hackathon builders. It turns scattered project state, challenge rules, judging criteria, risks, and missing assets into a clean launch plan. The tool scores submission readiness, shows a Launch Gate verdict, highlights judge-facing strengths through Judge Lens, and exports a judge packet, dark dashboard, launch packet, checklist, Copilot summary, and release manifest. It aligns with Foundry IQ by grounding guidance in project context, rules summaries, artifact status, and safety signals without claiming live Foundry deployment. The demo uses synthetic data only, includes deterministic CLI commands and GitHub Actions smoke coverage, and helps builders stop guessing, stop overbuilding, and ship stronger submissions.
 
 ## Short Pitch
 
