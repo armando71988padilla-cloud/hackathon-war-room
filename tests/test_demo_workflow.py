@@ -49,6 +49,16 @@ def main() -> int:
     assert "Launch Gate: NEEDS POLISH" in evaluate_result.stdout
     assert "WAR_ROOM_EVALUATE_OK" in evaluate_result.stdout
 
+    export_result = run_cli("export")
+    assert export_result.returncode == 0, export_result.stderr
+    assert "Judge packet:" in export_result.stdout
+    assert "WAR_ROOM_EXPORT_OK" in export_result.stdout
+    judge_packet = ROOT / "demo" / "output" / "judge_packet.md"
+    assert judge_packet.exists()
+    packet_text = judge_packet.read_text(encoding="utf-8")
+    assert "Hackathon War Room - Judge Packet" in packet_text
+    assert "Launch Gate" in packet_text
+
     print("WAR_ROOM_SMOKE_OK")
     return 0
 

@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from hackathon_war_room.core.evaluate import evaluate_project
+from hackathon_war_room.core.export_packet import write_judge_packet
 
 
 def project_root() -> Path:
@@ -16,10 +17,15 @@ def load_json(path: Path) -> dict:
         return json.load(f)
 
 
-def build_report() -> dict:
+def load_inputs() -> tuple[dict, dict]:
     root = project_root()
     profile = load_json(root / "demo" / "sample_project_profile.json")
     rules = load_json(root / "demo" / "sample_rules_summary.json")
+    return profile, rules
+
+
+def build_report() -> dict:
+    profile, rules = load_inputs()
     return evaluate_project(profile, rules)
 
 
@@ -38,7 +44,7 @@ def run_demo() -> int:
     print("Hackathon War Room")
     print("Mission status: scoring engine online")
     print_report(build_report())
-    print(f"Output bay: {output_dir}")
+    print("Output bay: {}".format(output_dir))
     print("WAR_ROOM_DEMO_READY")
     return 0
 
@@ -49,6 +55,22 @@ def run_evaluate() -> int:
     return 0
 
 
+def run_export() -> int:
+    root = project_root()
+    profile, rules = load_inputs()
+    report = evaluate_project(profile, rules)
+    judge_packet = write_judge_packet(root, profile, rules, report)
+    print_report(report)
+    print("Judge packet: {}".format(judge_packet))
+    print("WAR_ROOM_EXPORT_OK")
+    return 0
+
+
+def print_help() -> None:
+    print("Usage: PYTHONPATH=\"$PWD/src\" python3 -m hackathon_war_room COMMAND")
+    print("Commands: demo, evaluate, export")
+
+
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     command = args[0] if args else "demo"
@@ -56,13 +78,13 @@ def main(argv: list[str] | None = None) -> int:
         return run_demo()
     if command == "evaluate":
         return run_evaluate()
+    if command == "export":
+        return run_export()
     if command in {"help", "--help", "-h"}:
-        print("Usage: PYTHONPATH=\"$PWD/src\" python3 -m hackathon_war_room demo")
-        print("Commands: demo, evaluate")
+        print_help()
         return 0
-    print(f"Unknown command: {command}")
-    print("Usage: PYTHONPATH=\"$PWD/src\" python3 -m hackathon_war_room demo")
-    print("Commands: demo, evaluate")
+    print("Unknown command: {}".format(command))
+    print_help()
     return 2
 
 
