@@ -115,6 +115,18 @@ demo/output/copilot_battle_log_summary.md
 demo/output/release_manifest.json
 ```
 
+## Open The Dashboard
+
+After running export, open the generated dashboard locally:
+
+```bash
+xdg-open demo/output/project_readiness_dashboard.html
+```
+
+The dashboard includes a cinematic Citadel-AI styled mockup, interactive sidebar tabs, top-card action hotspots, Asset Bay links, and a Settings command drawer for quick access to proof artifacts.
+
+For screenshots or demo recording, use the generated dashboard after the final export command and before changing any more dashboard CSS.
+
 ## Smoke Test
 
 ```bash
