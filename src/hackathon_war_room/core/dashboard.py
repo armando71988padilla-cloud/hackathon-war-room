@@ -93,6 +93,30 @@ def _dashboard_hotspots() -> str:
     items = "".join(_hotspot(label, href, class_name) for label, href, class_name in links)
     return _tag("nav", items, "class=\"action-hotspots\" aria-label=\"dashboard action links\"")
 
+def _command_link(label: str, href: str) -> str:
+    attrs = "href=\"{}\" target=\"_blank\" rel=\"noopener\"".format(escape(href, quote=True))
+    return _tag("a", label, attrs)
+
+
+def _command_drawer() -> str:
+    links = [
+        ("Open judge packet", "judge_packet.md"),
+        ("Open dashboard", "project_readiness_dashboard.html"),
+        ("Open launch packet", "launch_packet.md"),
+        ("Open final checklist", "submission_checklist.md"),
+        ("Open release manifest", "release_manifest.json"),
+        ("Read README", "../../README.md"),
+        ("Read architecture", "../../docs/architecture.md"),
+        ("Read Copilot build log", "../../docs/copilot_build_log.md"),
+        ("Read submission notes", "../../docs/submission_notes.md"),
+    ]
+    body = _tag("div", "Command Links", "class=\"drawer-kicker\"")
+    body += _tag("h2", "Settings Command Drawer")
+    body += _tag("p", "Quick-launch proof artifacts and submission docs without leaving the War Room.")
+    body += _tag("div", "".join(_command_link(label, href) for label, href in links), "class=\"drawer-links\"")
+    body += _tag("a", "Close", "href=\"#war-room\" class=\"drawer-close\"")
+    return _tag("aside", body, "class=\"command-drawer\" aria-label=\"settings command drawer\"")
+
 
 def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dict[str, Any]) -> str:
     verdict = escape(str(report.get("verdict", "UNKNOWN")))
@@ -136,9 +160,10 @@ def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dic
     action = _tag("section", _tag("h2", "Next Safest Action") + _tag("p", next_action, "class=\"tagline\""), "id=\"settings\" class=\"card\"")
     footer = _tag("div", "Powered by Citadel AI // synthetic demo data only // generated locally", "class=\"footer\"")
     hotspots = _dashboard_hotspots()
+    drawer = _command_drawer()
     nav = _tag("aside", _tag("div", "CITADEL-AI", "class=\"brand-mark\"") + _tag("a", "War Room", "href=\"#war-room\" class=\"nav-item active\"") + _tag("a", "Scorecard", "href=\"#scorecard\" class=\"nav-item\"") + _tag("a", "Assets", "href=\"#assets\" class=\"nav-item\"") + _tag("a", "Risk Console", "href=\"#risk-console\" class=\"nav-item\"") + _tag("a", "Copilot Log", "href=\"#copilot-log\" class=\"nav-item\"") + _tag("a", "Settings", "href=\"#settings\" class=\"nav-item\""), "class=\"side-nav\"")
     content = _tag("main", hero + cards + scorecard + lens + intelligence + asset_bay + action + footer, "class=\"wrap\"")
-    main = _tag("div", nav + hotspots + content, "class=\"shell\"")
+    main = _tag("div", nav + hotspots + drawer + content, "class=\"shell\"")
     return "<!doctype html>\n" + _tag("html", _tag("head", head) + _tag("body", main), "lang=\"en\"") + "\n"
 
 

@@ -140,3 +140,14 @@ body:not(:has(:target)) .nav-item[href="#war-room"],body:has(#war-room:target) .
 .hotspot-architecture{left:calc(var(--mockup-left) + 27.80vh)!important;top:77.20vh!important;width:26.05vh!important;height:6.70vh!important}
 .hotspot-final-checklist{left:calc(var(--mockup-left) + 55.10vh)!important;top:77.20vh!important;width:23.35vh!important;height:6.70vh!important}
 .hotspot-copilot-build-log{left:calc(var(--mockup-left) + 79.95vh)!important;top:77.20vh!important;width:43.90vh!important;height:6.70vh!important}
+
+/* Phase 12G - Settings command drawer */
+.command-drawer{position:fixed;right:3.0vh;top:10.0vh;width:42.0vh;z-index:70;padding:2.2vh;border:1px solid rgba(239,18,31,.62);border-radius:2.0vh;background:linear-gradient(180deg,rgba(16,0,2,.94),rgba(0,0,0,.90));box-shadow:0 0 60px rgba(239,18,31,.34),inset 0 0 38px rgba(239,18,31,.08);color:#fff7f7;opacity:0;transform:translateX(2vh);pointer-events:none;transition:.18s ease}
+body:has(#settings:target) .command-drawer{opacity:1;transform:translateX(0);pointer-events:auto}
+.drawer-kicker{font-size:1.1vh;letter-spacing:.24em;text-transform:uppercase;color:#ef121f;font-weight:800;margin-bottom:.8vh}
+.command-drawer h2{margin:0 0 .8vh;font-size:2.2vh;color:#fff7f7;text-shadow:0 0 24px rgba(239,18,31,.34)}
+.command-drawer p{margin:0 0 1.4vh;color:#d7bcbc;font-size:1.25vh;line-height:1.45}
+.drawer-links{display:grid;grid-template-columns:1fr;gap:.7vh}
+.drawer-links a,.drawer-close{display:block;padding:.95vh 1.1vh;border:1px solid rgba(239,18,31,.26);border-radius:.9vh;background:rgba(239,18,31,.06);color:#fff7f7;text-decoration:none;font-size:1.25vh;transition:.16s ease}
+.drawer-links a:hover,.drawer-links a:focus,.drawer-close:hover,.drawer-close:focus{border-color:rgba(239,18,31,.78);background:rgba(239,18,31,.16);box-shadow:0 0 22px rgba(239,18,31,.32);outline:none}
+.drawer-close{margin-top:1.2vh;text-align:center;color:#ffb4b8}
