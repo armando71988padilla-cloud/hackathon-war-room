@@ -14,6 +14,17 @@ def load_json(path: Path) -> dict:
         return json.load(f)
 
 
+def run_cli(command: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        [sys.executable, "-m", "hackathon_war_room", command],
+        cwd=ROOT,
+        env={"PYTHONPATH": str(ROOT / "src")},
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+
 def main() -> int:
     profile_path = ROOT / "demo" / "sample_project_profile.json"
     rules_path = ROOT / "demo" / "sample_rules_summary.json"
@@ -26,16 +37,17 @@ def main() -> int:
     assert rules["track"] == "Creative Apps"
     assert "Demonstrate meaningful GitHub Copilot usage during development" in rules["core_requirements"]
 
-    result = subprocess.run(
-        [sys.executable, "-m", "hackathon_war_room", "demo"],
-        cwd=ROOT,
-        env={"PYTHONPATH": str(ROOT / "src")},
-        text=True,
-        capture_output=True,
-        check=False,
-    )
-    assert result.returncode == 0, result.stderr
-    assert "WAR_ROOM_DEMO_READY" in result.stdout
+    demo_result = run_cli("demo")
+    assert demo_result.returncode == 0, demo_result.stderr
+    assert "Readiness score: 76/100" in demo_result.stdout
+    assert "Launch Gate: NEEDS POLISH" in demo_result.stdout
+    assert "WAR_ROOM_DEMO_READY" in demo_result.stdout
+
+    evaluate_result = run_cli("evaluate")
+    assert evaluate_result.returncode == 0, evaluate_result.stderr
+    assert "Readiness score: 76/100" in evaluate_result.stdout
+    assert "Launch Gate: NEEDS POLISH" in evaluate_result.stdout
+    assert "WAR_ROOM_EVALUATE_OK" in evaluate_result.stdout
 
     print("WAR_ROOM_SMOKE_OK")
     return 0
