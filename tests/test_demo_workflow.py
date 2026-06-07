@@ -84,6 +84,29 @@ def main() -> int:
     assert "Submission Candidate" in dashboard_text
     assert "status-strip" in dashboard_text
     assert "READY TO SUBMIT" in dashboard_text
+    assert "data:image/png;base64," in dashboard_text
+    assert "__MOCKUP_IMAGE__" not in dashboard_text
+    assert "action-hotspots" in dashboard_text
+
+    expected_dashboard_links = [
+        "href=\"#war-room\"",
+        "href=\"#scorecard\"",
+        "href=\"#assets\"",
+        "href=\"#risk-console\"",
+        "href=\"#copilot-log\"",
+        "href=\"#settings\"",
+        "href=\"../../README.md\"",
+        "href=\"launch_packet.md\"",
+        "href=\"release_manifest.json\"",
+        "href=\"../../docs/architecture.md\"",
+        "href=\"judge_packet.md\"",
+        "href=\"project_readiness_dashboard.html\"",
+        "href=\"../../docs/demo_video_script.md\"",
+        "href=\"../../docs/final_submission_checklist.md\"",
+        "href=\"../../docs/copilot_build_log.md\"",
+    ]
+    for expected_link in expected_dashboard_links:
+        assert expected_link in dashboard_text, expected_link
 
     launch_packet = ROOT / "demo" / "output" / "launch_packet.md"
     release_manifest = ROOT / "demo" / "output" / "release_manifest.json"
