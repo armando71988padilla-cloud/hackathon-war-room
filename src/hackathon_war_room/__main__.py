@@ -7,6 +7,7 @@ from pathlib import Path
 from hackathon_war_room.core.dashboard import write_dashboard
 from hackathon_war_room.core.evaluate import evaluate_project
 from hackathon_war_room.core.export_packet import write_judge_packet
+from hackathon_war_room.core.launch_bundle import write_launch_bundle
 
 
 def project_root() -> Path:
@@ -62,9 +63,13 @@ def run_export() -> int:
     report = evaluate_project(profile, rules)
     judge_packet = write_judge_packet(root, profile, rules, report)
     dashboard = write_dashboard(root, profile, rules, report)
+    bundle = write_launch_bundle(root, profile, rules, report)
     print_report(report)
     print("Judge packet: {}".format(judge_packet))
     print("Dashboard: {}".format(dashboard))
+    for name, path in bundle.items():
+        print("{}: {}".format(name.replace("_", " ").title(), path))
+    print("Generated artifacts: {}".format(2 + len(bundle)))
     print("WAR_ROOM_EXPORT_OK")
     return 0
 
