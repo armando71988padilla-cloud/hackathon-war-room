@@ -7,6 +7,7 @@ from pathlib import Path
 from hackathon_war_room.core.dashboard import write_dashboard
 from hackathon_war_room.core.evaluate import evaluate_project
 from hackathon_war_room.core.export_packet import write_judge_packet
+from hackathon_war_room.core.final_check import format_final_check, run_final_check
 from hackathon_war_room.core.launch_bundle import write_launch_bundle
 
 
@@ -88,9 +89,22 @@ def run_export() -> int:
     return 0
 
 
+def run_final_check_command() -> int:
+    root = project_root()
+    profile, rules = load_inputs()
+    report = evaluate_project(profile, rules)
+    result = run_final_check(root, profile, report)
+    print(format_final_check(result))
+    if result["final_check_passed"]:
+        print("WAR_ROOM_FINAL_CHECK_OK")
+        return 0
+    print("WAR_ROOM_FINAL_CHECK_FAILED")
+    return 1
+
+
 def print_help() -> None:
     print("Usage: PYTHONPATH=\"$PWD/src\" python3 -m hackathon_war_room COMMAND")
-    print("Commands: demo, evaluate, export")
+    print("Commands: demo, evaluate, export, final-check")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -102,6 +116,8 @@ def main(argv: list[str] | None = None) -> int:
         return run_evaluate()
     if command == "export":
         return run_export()
+    if command == "final-check":
+        return run_final_check_command()
     if command in {"help", "--help", "-h"}:
         print_help()
         return 0
