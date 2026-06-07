@@ -59,6 +59,14 @@ def main() -> int:
     assert "Hackathon War Room - Judge Packet" in packet_text
     assert "Launch Gate" in packet_text
 
+    dashboard = ROOT / "demo" / "output" / "project_readiness_dashboard.html"
+    assert dashboard.exists()
+    dashboard_text = dashboard.read_text(encoding="utf-8")
+    assert "Hackathon War Room Dashboard" in dashboard_text
+    assert "Mission Board" in dashboard_text
+    assert "Risk Console" in dashboard_text
+    assert "NEEDS POLISH" in dashboard_text
+
     print("WAR_ROOM_SMOKE_OK")
     return 0
 

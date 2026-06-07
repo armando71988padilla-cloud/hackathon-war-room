@@ -4,6 +4,7 @@ import json
 import sys
 from pathlib import Path
 
+from hackathon_war_room.core.dashboard import write_dashboard
 from hackathon_war_room.core.evaluate import evaluate_project
 from hackathon_war_room.core.export_packet import write_judge_packet
 
@@ -60,8 +61,10 @@ def run_export() -> int:
     profile, rules = load_inputs()
     report = evaluate_project(profile, rules)
     judge_packet = write_judge_packet(root, profile, rules, report)
+    dashboard = write_dashboard(root, profile, rules, report)
     print_report(report)
     print("Judge packet: {}".format(judge_packet))
+    print("Dashboard: {}".format(dashboard))
     print("WAR_ROOM_EXPORT_OK")
     return 0
 
