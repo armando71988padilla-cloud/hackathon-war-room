@@ -112,7 +112,12 @@ def evaluate_project(profile: dict[str, Any], rules: dict[str, Any]) -> dict[str
         "Synthetic data posture",
         "Strong Copilot assisted development story planned",
     ]
-    next_action = "Generate the judge packet and dashboard before recording the final demo video."
+    if total >= 90:
+        next_action = "Record the final demo video, capture the dashboard screenshot, run the smoke test, and freeze feature changes."
+    elif total >= 75:
+        next_action = "Finish the missing submission assets, regenerate exports, and rerun the smoke test."
+    else:
+        next_action = "Resolve blocking risks before adding polish or recording the final demo."
     return {
         "project_name": profile.get("project_name", "Unknown Project"),
         "track": profile.get("track", "Unknown Track"),
