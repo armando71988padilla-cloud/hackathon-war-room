@@ -64,12 +64,26 @@ def run_export() -> int:
     judge_packet = write_judge_packet(root, profile, rules, report)
     dashboard = write_dashboard(root, profile, rules, report)
     bundle = write_launch_bundle(root, profile, rules, report)
+
+    artifacts = {
+        "Judge packet": judge_packet,
+        "Dashboard": dashboard,
+        "Launch packet": bundle["launch_packet"],
+        "Submission checklist": bundle["submission_checklist"],
+        "Copilot battle log summary": bundle["copilot_battle_log_summary"],
+        "Release manifest": bundle["release_manifest"],
+    }
+
+    print("=== Hackathon War Room Export ===")
     print_report(report)
-    print("Judge packet: {}".format(judge_packet))
-    print("Dashboard: {}".format(dashboard))
-    for name, path in bundle.items():
-        print("{}: {}".format(name.replace("_", " ").title(), path))
-    print("Generated artifacts: {}".format(2 + len(bundle)))
+    print("")
+    print("Mission artifacts:")
+    for name, path in artifacts.items():
+        print("- {}: {}".format(name, path))
+    print("")
+    print("Generated artifacts: {}".format(len(artifacts)))
+    print("Open dashboard: {}".format(dashboard))
+    print("Final proof: PYTHONPATH=\"$PWD/src\" python3 tests/test_demo_workflow.py")
     print("WAR_ROOM_EXPORT_OK")
     return 0
 
