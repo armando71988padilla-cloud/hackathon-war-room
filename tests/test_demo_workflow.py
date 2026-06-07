@@ -67,6 +67,10 @@ def main() -> int:
     assert "Hackathon War Room Dashboard" in dashboard_text
     assert "Mission Board" in dashboard_text
     assert "Risk Console" in dashboard_text
+    assert "Asset Bay" in dashboard_text
+    assert "README" in dashboard_text
+    assert "Architecture doc" in dashboard_text
+    assert "Copilot build log" in dashboard_text
     assert "READY TO SUBMIT" in dashboard_text
 
     launch_packet = ROOT / "demo" / "output" / "launch_packet.md"
