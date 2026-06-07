@@ -86,8 +86,8 @@ def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dic
     )
     hero = _tag("section", topline + _tag("div", "Mission Board // Creative Apps", "class=\"kicker\"") + _tag("h1", project, "class=\"title\"") + _tag("p", tagline, "class=\"tagline\"") + _tag("span", battle, "class=\"pill\"") + status_strip, "id=\"war-room\" class=\"hero\"")
     cards = _tag("section", _tag("div", _tag("div", "Launch Gate", "class=\"label\"") + _tag("div", verdict, "class=\"big verdict\""), "class=\"card launch\"") + _tag("div", _tag("div", "Readiness", "class=\"label\"") + _tag("div", score + "/100", "class=\"big\""), "class=\"card\"") + _tag("div", _tag("div", "Microsoft IQ", "class=\"label\"") + _tag("div", iq, "class=\"big\""), "class=\"card ok\""), "id=\"launch\" class=\"cards\"")
-    scorecard = _tag("section", _tag("div", _tag("h2", "Scorecard") + _score_rows(report.get("category_scores", {})), "class=\"card\"") + _tag("div", _tag("h2", "Readiness Gauge") + _tag("div", _tag("strong", score), "class=\"score-ring\""), "class=\"card\""), "id=\"scorecard\" id=\"risk-console\" id=\"copilot-log\" class=\"grid\"")
-    lens = _tag("section", _tag("div", _tag("h2", "Judge Lens") + _tag("ul", _li(report.get("strengths", [])), "class=\"list\""), "class=\"card\"") + _tag("div", _tag("h2", "Risk Console") + _tag("ul", _li(report.get("risks", [])), "class=\"list\""), "class=\"card risk\""), "class=\"grid\"")
+    scorecard = _tag("section", _tag("div", _tag("h2", "Scorecard") + _score_rows(report.get("category_scores", {})), "class=\"card\"") + _tag("div", _tag("h2", "Readiness Gauge") + _tag("div", _tag("strong", score), "class=\"score-ring\""), "class=\"card\""), "id=\"scorecard\" class=\"grid\"")
+    lens = _tag("section", _tag("div", _tag("h2", "Judge Lens") + _tag("ul", _li(report.get("strengths", [])), "class=\"list\""), "class=\"card\"") + _tag("div", _tag("h2", "Risk Console") + _tag("ul", _li(report.get("risks", [])), "class=\"list\""), "class=\"card risk\""), "id=\"risk-console\" class=\"grid\"")
     intelligence = _tag(
         "section",
         _intel_panel(
@@ -100,7 +100,7 @@ def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dic
             "Copilot Battle Log",
             "Documents the AI assisted build process behind the CLI, scoring engine, smoke tests, dashboard, README, and launch bundle.",
         ),
-        "class=\"grid\"",
+        "id=\"copilot-log\" class=\"grid\"",
     )
     asset_bay = _tag("section", _tag("h2", "Asset Bay") + _tag("div", _artifact_cards(profile), "class=\"artifact-grid\""), "id=\"assets\" class=\"card\"")
     action = _tag("section", _tag("h2", "Next Safest Action") + _tag("p", next_action, "class=\"tagline\""), "id=\"settings\" class=\"card\"")
