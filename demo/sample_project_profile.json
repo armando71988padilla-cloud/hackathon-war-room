@@ -8,12 +8,11 @@
   "tagline": "Turn hackathon chaos into a judge ready launch packet.",
   "repo_status": "public GitHub baseline pushed",
   "demo_video_status": "not recorded",
-  "ci_status": "not configured",
+  "ci_status": "configured",
   "uses_synthetic_data": true,
   "known_risks": [
     "demo video not recorded yet",
     "architecture documentation not finalized yet",
-    "CI workflow not configured yet",
     "portal description not finalized yet"
   ],
   "features_planned": [

@@ -39,14 +39,14 @@ def main() -> int:
 
     demo_result = run_cli("demo")
     assert demo_result.returncode == 0, demo_result.stderr
-    assert "Readiness score: 89/100" in demo_result.stdout
-    assert "Launch Gate: NEEDS POLISH" in demo_result.stdout
+    assert "Readiness score: 94/100" in demo_result.stdout
+    assert "Launch Gate: READY TO SUBMIT" in demo_result.stdout
     assert "WAR_ROOM_DEMO_READY" in demo_result.stdout
 
     evaluate_result = run_cli("evaluate")
     assert evaluate_result.returncode == 0, evaluate_result.stderr
-    assert "Readiness score: 89/100" in evaluate_result.stdout
-    assert "Launch Gate: NEEDS POLISH" in evaluate_result.stdout
+    assert "Readiness score: 94/100" in evaluate_result.stdout
+    assert "Launch Gate: READY TO SUBMIT" in evaluate_result.stdout
     assert "WAR_ROOM_EVALUATE_OK" in evaluate_result.stdout
 
     export_result = run_cli("export")
@@ -65,7 +65,7 @@ def main() -> int:
     assert "Hackathon War Room Dashboard" in dashboard_text
     assert "Mission Board" in dashboard_text
     assert "Risk Console" in dashboard_text
-    assert "NEEDS POLISH" in dashboard_text
+    assert "READY TO SUBMIT" in dashboard_text
 
     print("WAR_ROOM_SMOKE_OK")
     return 0
