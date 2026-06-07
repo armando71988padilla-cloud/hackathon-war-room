@@ -121,7 +121,15 @@ def main() -> int:
         assert artifact.exists(), artifact
 
     assert "Hackathon War Room - Launch Packet" in launch_packet.read_text(encoding="utf-8")
-    assert "READY TO SUBMIT" in release_manifest.read_text(encoding="utf-8")
+    manifest_text = release_manifest.read_text(encoding="utf-8")
+    assert "READY TO SUBMIT" in manifest_text
+    assert "schema_version" in manifest_text
+    assert "microsoft_iq" in manifest_text
+    assert "quality_signals" in manifest_text
+    assert "safety_posture" in manifest_text
+    assert "proof_commands" in manifest_text
+    assert "WAR_ROOM_FINAL_CHECK_OK" in manifest_text
+    assert "live_foundry_deployment_claimed" in manifest_text
     assert "Generated Submission Checklist" in submission_checklist.read_text(encoding="utf-8")
     assert "Copilot Battle Log Summary" in copilot_summary.read_text(encoding="utf-8")
 

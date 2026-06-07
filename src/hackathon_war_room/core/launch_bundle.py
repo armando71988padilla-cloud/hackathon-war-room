@@ -145,21 +145,48 @@ def render_copilot_summary(profile: dict[str, Any], rules: dict[str, Any], repor
 
 
 def build_release_manifest(profile: dict[str, Any], rules: dict[str, Any], report: dict[str, Any]) -> dict[str, Any]:
+    artifacts = artifact_status(profile)
+    proof_commands = [
+        "PYTHONPATH=\"$PWD/src\" python3 -m hackathon_war_room export",
+        "PYTHONPATH=\"$PWD/src\" python3 -m hackathon_war_room final-check",
+        "PYTHONPATH=\"$PWD/src\" python3 tests/test_demo_workflow.py",
+    ]
     return {
+        "schema_version": "1.0",
         "project_name": report.get("project_name", "Hackathon War Room"),
+        "tagline": profile.get("tagline", "Turn hackathon chaos into a judge ready launch packet."),
         "track": report.get("track", "Creative Apps"),
         "challenge": rules.get("challenge", "Agents League Hackathon"),
         "battle": rules.get("battle", "Battle 1 - Creative Apps with GitHub Copilot"),
-        "readiness_score": report.get("readiness_score", 0),
-        "verdict": report.get("verdict", "UNKNOWN"),
-        "ci_status": profile.get("ci_status", "unknown"),
-        "uses_synthetic_data": profile.get("uses_synthetic_data") is True,
-        "primary_iq_fit": profile.get("primary_iq_fit", "Foundry IQ"),
-        "artifacts": artifact_status(profile),
+        "project_type": profile.get("project_type", "AI assisted creative build command center"),
+        "target_user": profile.get("target_user", "hackathon builders"),
+        "microsoft_iq": {
+            "primary_layer": profile.get("primary_iq_fit", "Foundry IQ"),
+            "alignment_summary": rules.get("war_room_alignment", {}).get("foundry_iq", "Grounds recommendations in project context, rules, risks, and artifact status."),
+            "live_foundry_deployment_claimed": False,
+        },
+        "launch_gate": {
+            "readiness_score": report.get("readiness_score", 0),
+            "verdict": report.get("verdict", "UNKNOWN"),
+            "next_safest_action": report.get("next_safest_action", ""),
+        },
+        "quality_signals": {
+            "ci_status": profile.get("ci_status", "unknown"),
+            "smoke_test_expected_output": "WAR_ROOM_SMOKE_OK",
+            "final_check_expected_output": "WAR_ROOM_FINAL_CHECK_OK",
+            "generated_artifact_count": 6,
+        },
+        "safety_posture": {
+            "uses_synthetic_data": profile.get("uses_synthetic_data") is True,
+            "secret_hygiene_required": True,
+            "private_data_required": False,
+            "confidential_material_required": False,
+        },
+        "artifacts": artifacts,
+        "proof_commands": proof_commands,
         "risks": report.get("risks", []),
-        "next_safest_action": report.get("next_safest_action", ""),
+        "freeze_guidance": "After export, smoke test, final check, screenshot, and demo assets are ready, stop feature churn and submit.",
     }
-
 
 def write_launch_bundle(root: Path, profile: dict[str, Any], rules: dict[str, Any], report: dict[str, Any]) -> dict[str, Path]:
     output_dir = root / "demo" / "output"
