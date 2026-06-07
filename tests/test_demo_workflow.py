@@ -71,6 +71,9 @@ def main() -> int:
     assert "README" in dashboard_text
     assert "Architecture doc" in dashboard_text
     assert "Copilot build log" in dashboard_text
+    assert "Foundry IQ Alignment" in dashboard_text
+    assert "Copilot Battle Log" in dashboard_text
+    assert "AI Assisted Development" in dashboard_text
     assert "READY TO SUBMIT" in dashboard_text
 
     launch_packet = ROOT / "demo" / "output" / "launch_packet.md"
