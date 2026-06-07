@@ -74,6 +74,10 @@ def main() -> int:
     assert "Foundry IQ Alignment" in dashboard_text
     assert "Copilot Battle Log" in dashboard_text
     assert "AI Assisted Development" in dashboard_text
+    assert "Command Deck" in dashboard_text
+    assert "Submission Candidate" in dashboard_text
+    assert "Max Polish Track" in dashboard_text
+    assert "status-strip" in dashboard_text
     assert "READY TO SUBMIT" in dashboard_text
 
     launch_packet = ROOT / "demo" / "output" / "launch_packet.md"
