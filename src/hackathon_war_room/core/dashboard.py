@@ -84,9 +84,9 @@ def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dic
         + _tag("div", _tag("span", "IQ Layer") + _tag("strong", iq), "class=\"status-chip\""),
         "class=\"status-strip\"",
     )
-    hero = _tag("section", topline + _tag("div", "Mission Board // Creative Apps", "class=\"kicker\"") + _tag("h1", project, "class=\"title\"") + _tag("p", tagline, "class=\"tagline\"") + _tag("span", battle, "class=\"pill\"") + status_strip, "class=\"hero\"")
-    cards = _tag("section", _tag("div", _tag("div", "Launch Gate", "class=\"label\"") + _tag("div", verdict, "class=\"big verdict\""), "class=\"card launch\"") + _tag("div", _tag("div", "Readiness", "class=\"label\"") + _tag("div", score + "/100", "class=\"big\""), "class=\"card\"") + _tag("div", _tag("div", "Microsoft IQ", "class=\"label\"") + _tag("div", iq, "class=\"big\""), "class=\"card ok\""), "class=\"cards\"")
-    scorecard = _tag("section", _tag("div", _tag("h2", "Scorecard") + _score_rows(report.get("category_scores", {})), "class=\"card\"") + _tag("div", _tag("h2", "Readiness Gauge") + _tag("div", _tag("strong", score), "class=\"score-ring\""), "class=\"card\""), "class=\"grid\"")
+    hero = _tag("section", topline + _tag("div", "Mission Board // Creative Apps", "class=\"kicker\"") + _tag("h1", project, "class=\"title\"") + _tag("p", tagline, "class=\"tagline\"") + _tag("span", battle, "class=\"pill\"") + status_strip, "id=\"war-room\" class=\"hero\"")
+    cards = _tag("section", _tag("div", _tag("div", "Launch Gate", "class=\"label\"") + _tag("div", verdict, "class=\"big verdict\""), "class=\"card launch\"") + _tag("div", _tag("div", "Readiness", "class=\"label\"") + _tag("div", score + "/100", "class=\"big\""), "class=\"card\"") + _tag("div", _tag("div", "Microsoft IQ", "class=\"label\"") + _tag("div", iq, "class=\"big\""), "class=\"card ok\""), "id=\"launch\" class=\"cards\"")
+    scorecard = _tag("section", _tag("div", _tag("h2", "Scorecard") + _score_rows(report.get("category_scores", {})), "class=\"card\"") + _tag("div", _tag("h2", "Readiness Gauge") + _tag("div", _tag("strong", score), "class=\"score-ring\""), "class=\"card\""), "id=\"scorecard\" id=\"risk-console\" id=\"copilot-log\" class=\"grid\"")
     lens = _tag("section", _tag("div", _tag("h2", "Judge Lens") + _tag("ul", _li(report.get("strengths", [])), "class=\"list\""), "class=\"card\"") + _tag("div", _tag("h2", "Risk Console") + _tag("ul", _li(report.get("risks", [])), "class=\"list\""), "class=\"card risk\""), "class=\"grid\"")
     intelligence = _tag(
         "section",
@@ -102,10 +102,12 @@ def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dic
         ),
         "class=\"grid\"",
     )
-    asset_bay = _tag("section", _tag("h2", "Asset Bay") + _tag("div", _artifact_cards(profile), "class=\"artifact-grid\""), "class=\"card\"")
-    action = _tag("section", _tag("h2", "Next Safest Action") + _tag("p", next_action, "class=\"tagline\""), "class=\"card\"")
+    asset_bay = _tag("section", _tag("h2", "Asset Bay") + _tag("div", _artifact_cards(profile), "class=\"artifact-grid\""), "id=\"assets\" class=\"card\"")
+    action = _tag("section", _tag("h2", "Next Safest Action") + _tag("p", next_action, "class=\"tagline\""), "id=\"settings\" class=\"card\"")
     footer = _tag("div", "Hackathon War Room // synthetic demo data only // generated locally", "class=\"footer\"")
-    main = _tag("main", hero + cards + scorecard + lens + intelligence + asset_bay + action + footer, "class=\"wrap\"")
+    nav = _tag("aside", _tag("div", "CITADEL-AI", "class=\"brand-mark\"") + _tag("a", "War Room", "href=\"#war-room\" class=\"nav-item active\"") + _tag("a", "Launch", "href=\"#launch\" class=\"nav-item\"") + _tag("a", "Scorecard", "href=\"#scorecard\" class=\"nav-item\"") + _tag("a", "Assets", "href=\"#assets\" class=\"nav-item\"") + _tag("a", "Risk Console", "href=\"#risk-console\" class=\"nav-item\"") + _tag("a", "Copilot Log", "href=\"#copilot-log\" class=\"nav-item\"") + _tag("a", "Settings", "href=\"#settings\" class=\"nav-item\""), "class=\"side-nav\"")
+    content = _tag("main", hero + cards + scorecard + lens + intelligence + asset_bay + action + footer, "class=\"wrap\"")
+    main = _tag("div", nav + content, "class=\"shell\"")
     return "<!doctype html>\n" + _tag("html", _tag("head", head) + _tag("body", main), "lang=\"en\"") + "\n"
 
 
