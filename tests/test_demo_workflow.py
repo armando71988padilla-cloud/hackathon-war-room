@@ -55,6 +55,12 @@ def main() -> int:
     assert "Dashboard:" in export_result.stdout
     assert "Generated artifacts: 6" in export_result.stdout
     assert "WAR_ROOM_EXPORT_OK" in export_result.stdout
+
+    final_check_result = run_cli("final-check")
+    assert final_check_result.returncode == 0, final_check_result.stderr
+    assert "Checks passed: 18/18" in final_check_result.stdout
+    assert "All final checks passed." in final_check_result.stdout
+    assert "WAR_ROOM_FINAL_CHECK_OK" in final_check_result.stdout
     judge_packet = ROOT / "demo" / "output" / "judge_packet.md"
     assert judge_packet.exists()
     packet_text = judge_packet.read_text(encoding="utf-8")
