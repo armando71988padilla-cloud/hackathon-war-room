@@ -1,0 +1,40 @@
+:root{--red:#ef121f;--mockup-left:calc(50vw - 88.84165vh)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:#020000;font-family:Inter,Segoe UI,Arial,sans-serif;overflow:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-4;background:url("__MOCKUP_IMAGE__") top center / auto 100vh no-repeat #020000}
+body:after{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(90deg,rgba(0,0,0,.05),transparent 18%,transparent 82%,rgba(0,0,0,.08));pointer-events:none}
+.shell{min-height:100vh;position:relative}
+.side-nav{position:fixed;left:var(--mockup-left);top:0;width:22.4vh;height:100vh;padding-top:16.8vh;z-index:50;background:transparent;border:0;pointer-events:auto}
+.brand-mark{position:absolute;left:0;top:0;color:transparent;font-size:1px}
+.nav-item{display:block;width:17.8vh;height:5.9vh;margin:0 0 .95vh 1.0vh;border-radius:.7vh;text-indent:-9999px;overflow:hidden;background:transparent;border:1px solid transparent;transition:.16s ease;cursor:pointer;pointer-events:auto}
+.nav-item:hover,.nav-item:focus{background:rgba(239,18,31,.12);border-color:rgba(239,18,31,.75);box-shadow:0 0 28px rgba(239,18,31,.58),inset 0 0 22px rgba(239,18,31,.18);outline:none}
+.nav-item.active{background:transparent;border-color:transparent;box-shadow:none}
+.wrap{position:relative;z-index:5;width:100vw;min-height:100vh;opacity:0;pointer-events:none;user-select:none}
+.wrap *{pointer-events:none;user-select:none;caret-color:transparent}
+.hero,.cards,.grid,.card,.footer{background:transparent;border-color:transparent;box-shadow:none;color:transparent;text-shadow:none}
+.hero{min-height:1px}.cards{min-height:1px}.grid{min-height:1px}.card{min-height:1px}
+.big,.label,h2,.score-row,.list,.artifact,.footer,.tagline,.title,.kicker,.pill,.status-strip{color:transparent!important;text-shadow:none!important}
+.score-ring strong{color:transparent!important}
+::selection{background:transparent;color:transparent}
+.nav-item[href="#war-room"]{background:rgba(239,18,31,.04);border-color:rgba(239,18,31,.18)}
+body:has(#scorecard:target) .nav-item[href="#scorecard"],body:has(#assets:target) .nav-item[href="#assets"],body:has(#risk-console:target) .nav-item[href="#risk-console"],body:has(#copilot-log:target) .nav-item[href="#copilot-log"],body:has(#settings:target) .nav-item[href="#settings"]{background:rgba(239,18,31,.10);border-color:rgba(239,18,31,.70);box-shadow:0 0 28px rgba(239,18,31,.52),inset 0 0 22px rgba(239,18,31,.16)}
+body:not(:has(:target)) .nav-item[href="#war-room"],body:has(#war-room:target) .nav-item[href="#war-room"]{background:rgba(239,18,31,.08);border-color:rgba(239,18,31,.45);box-shadow:0 0 20px rgba(239,18,31,.35)}
+@media(max-aspect-ratio:1672/941){body{overflow:auto}body:before{background-size:100vw auto}.side-nav{left:0;width:13vw;padding-top:10.7vw}.nav-item{width:9.4vw;height:3.1vw;margin:0 0 .6vw 4.5vw}}
+
+/* Phase 12D.5 - lower sidebar hotspot calibration */
+.side-nav{position:fixed!important}
+.nav-item{position:absolute!important;margin:0!important;left:1.0vh!important;width:17.8vh!important;height:5.9vh!important}
+.nav-item[href="#war-room"]{top:16.8vh!important}
+.nav-item[href="#scorecard"]{top:23.7vh!important}
+.nav-item[href="#assets"]{top:29.85vh!important}
+.nav-item[href="#risk-console"]{top:36.45vh!important}
+.nav-item[href="#copilot-log"]{top:42.60vh!important}
+.nav-item[href="#settings"]{top:49.20vh!important}
+
+/* Phase 12D.6 - final invisible clickable hotspots */
+.nav-item,.nav-item:hover,.nav-item:focus,.nav-item.active,body:not(:has(:target)) .nav-item[href="#war-room"],body:has(#war-room:target) .nav-item[href="#war-room"],body:has(#scorecard:target) .nav-item[href="#scorecard"],body:has(#assets:target) .nav-item[href="#assets"],body:has(#risk-console:target) .nav-item[href="#risk-console"],body:has(#copilot-log:target) .nav-item[href="#copilot-log"],body:has(#settings:target) .nav-item[href="#settings"]{background:transparent!important;border-color:transparent!important;box-shadow:none!important;outline:none!important;color:transparent!important;text-shadow:none!important;cursor:pointer!important}
+
+/* Phase 12D.7 - restore polished selected tab glow */
+.nav-item:hover,.nav-item:focus{background:rgba(239,18,31,.13)!important;border-color:rgba(239,18,31,.80)!important;box-shadow:0 0 30px rgba(239,18,31,.62),inset 0 0 24px rgba(239,18,31,.20)!important;outline:none!important}
+body:not(:has(:target)) .nav-item[href="#war-room"],body:has(#war-room:target) .nav-item[href="#war-room"],body:has(#scorecard:target) .nav-item[href="#scorecard"],body:has(#assets:target) .nav-item[href="#assets"],body:has(#risk-console:target) .nav-item[href="#risk-console"],body:has(#copilot-log:target) .nav-item[href="#copilot-log"],body:has(#settings:target) .nav-item[href="#settings"]{background:rgba(239,18,31,.10)!important;border-color:rgba(239,18,31,.72)!important;box-shadow:0 0 28px rgba(239,18,31,.55),inset 0 0 24px rgba(239,18,31,.18)!important}
