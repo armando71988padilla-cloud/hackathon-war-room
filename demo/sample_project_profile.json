@@ -1,0 +1,39 @@
+{
+  "project_name": "Hackathon War Room",
+  "track": "Creative Apps",
+  "primary_iq_fit": "Foundry IQ",
+  "secondary_fit": "GitHub Copilot assisted development workflow",
+  "project_type": "AI assisted creative build command center for hackathon teams",
+  "target_user": "solo builders, student teams, indie hackers, hackathon participants, and project leads",
+  "tagline": "Turn hackathon chaos into a judge ready launch packet.",
+  "repo_status": "local skeleton created",
+  "demo_video_status": "not recorded",
+  "ci_status": "not configured",
+  "uses_synthetic_data": true,
+  "known_risks": [
+    "README not written yet",
+    "dashboard not generated yet",
+    "judge packet not generated yet",
+    "Copilot usage proof not documented yet"
+  ],
+  "features_planned": [
+    "Project intake",
+    "Rules alignment",
+    "Judge strategy",
+    "Build planner",
+    "Demo producer",
+    "Safety and submission verifier",
+    "Launch Gate verdict",
+    "Judge Lens mode",
+    "Copilot Battle Log"
+  ],
+  "assets": {
+    "readme": false,
+    "dashboard": false,
+    "judge_packet": false,
+    "demo_script": false,
+    "architecture_doc": false,
+    "submission_checklist": false,
+    "copilot_build_log": false
+  }
+}

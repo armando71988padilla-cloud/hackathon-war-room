@@ -1,0 +1,34 @@
+{
+  "challenge": "Agents League Hackathon",
+  "track": "Creative Apps",
+  "battle": "Battle 1 - Creative Apps with GitHub Copilot",
+  "core_requirements": [
+    "Demonstrate meaningful GitHub Copilot usage during development",
+    "Integrate at least one Microsoft IQ intelligence layer",
+    "Submit a creative application with unique user value and thoughtful UX",
+    "Protect confidential information and use demo data only"
+  ],
+  "preferred_signals": [
+    "Creative productivity workflow",
+    "AI assisted development story",
+    "Copilot CLI or MCP readiness if feasible",
+    "Strong user experience",
+    "Clear documentation of how AI helped build the project"
+  ],
+  "security_rules": [
+    "Do not include API keys, passwords, tokens, or credentials",
+    "Do not include customer data or personally identifiable information",
+    "Do not include confidential company information",
+    "Use environment variables for sensitive configuration",
+    "Use demo data only",
+    "Review commit history before submission",
+    "Use .gitignore for sensitive files",
+    "Scan for secrets before publishing"
+  ],
+  "war_room_alignment": {
+    "creative_app": "A mission control dashboard that helps builders create stronger hackathon submissions",
+    "copilot_usage": "The project will include a Copilot Battle Log documenting AI assisted development decisions",
+    "foundry_iq": "The workflow grounds recommendations in project profiles, rules summaries, judging criteria, risks, and artifact status",
+    "safety": "The demo uses synthetic project data only and avoids private repositories or confidential materials"
+  }
+}

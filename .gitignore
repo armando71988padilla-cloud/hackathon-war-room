@@ -1,0 +1,10 @@
+.env
+.env.local
+**/secrets/
+config/secrets.*
+*.pem
+*.key
+__pycache__/
+*.pyc
+.pytest_cache/
+demo/output/
