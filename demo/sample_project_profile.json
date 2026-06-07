@@ -12,7 +12,6 @@
   "uses_synthetic_data": true,
   "known_risks": [
     "demo video not recorded yet",
-    "architecture documentation not finalized yet",
     "portal description not finalized yet"
   ],
   "features_planned": [
@@ -31,7 +30,7 @@
     "dashboard": true,
     "judge_packet": true,
     "demo_script": true,
-    "architecture_doc": false,
+    "architecture_doc": true,
     "submission_checklist": true,
     "copilot_build_log": true
   }
