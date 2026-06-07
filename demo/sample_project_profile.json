@@ -12,9 +12,9 @@
   "uses_synthetic_data": true,
   "known_risks": [
     "demo video not recorded yet",
-    "demo script not generated yet",
-    "final submission checklist not generated yet",
-    "architecture documentation not finalized yet"
+    "architecture documentation not finalized yet",
+    "CI workflow not configured yet",
+    "portal description not finalized yet"
   ],
   "features_planned": [
     "Project intake",
@@ -31,9 +31,9 @@
     "readme": true,
     "dashboard": true,
     "judge_packet": true,
-    "demo_script": false,
+    "demo_script": true,
     "architecture_doc": false,
-    "submission_checklist": false,
+    "submission_checklist": true,
     "copilot_build_log": true
   }
 }
