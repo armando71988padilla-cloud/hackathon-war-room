@@ -127,6 +127,10 @@ The dashboard includes a cinematic Citadel-AI styled mockup, interactive sidebar
 
 For screenshots or demo recording, use the generated dashboard after the final export command and before changing any more dashboard CSS.
 
+Final dashboard preview:
+
+![Hackathon War Room dashboard](docs/images/dashboard_screenshot.png)
+
 ## Smoke Test
 
 ```bash
