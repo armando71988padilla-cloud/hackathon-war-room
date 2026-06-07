@@ -52,6 +52,8 @@ def main() -> int:
     export_result = run_cli("export")
     assert export_result.returncode == 0, export_result.stderr
     assert "Judge packet:" in export_result.stdout
+    assert "Dashboard:" in export_result.stdout
+    assert "Generated artifacts: 6" in export_result.stdout
     assert "WAR_ROOM_EXPORT_OK" in export_result.stdout
     judge_packet = ROOT / "demo" / "output" / "judge_packet.md"
     assert judge_packet.exists()
@@ -66,6 +68,19 @@ def main() -> int:
     assert "Mission Board" in dashboard_text
     assert "Risk Console" in dashboard_text
     assert "READY TO SUBMIT" in dashboard_text
+
+    launch_packet = ROOT / "demo" / "output" / "launch_packet.md"
+    release_manifest = ROOT / "demo" / "output" / "release_manifest.json"
+    submission_checklist = ROOT / "demo" / "output" / "submission_checklist.md"
+    copilot_summary = ROOT / "demo" / "output" / "copilot_battle_log_summary.md"
+
+    for artifact in [launch_packet, release_manifest, submission_checklist, copilot_summary]:
+        assert artifact.exists(), artifact
+
+    assert "Hackathon War Room - Launch Packet" in launch_packet.read_text(encoding="utf-8")
+    assert "READY TO SUBMIT" in release_manifest.read_text(encoding="utf-8")
+    assert "Generated Submission Checklist" in submission_checklist.read_text(encoding="utf-8")
+    assert "Copilot Battle Log Summary" in copilot_summary.read_text(encoding="utf-8")
 
     print("WAR_ROOM_SMOKE_OK")
     return 0
