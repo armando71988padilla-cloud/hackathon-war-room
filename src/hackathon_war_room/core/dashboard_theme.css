@@ -38,3 +38,105 @@ body:not(:has(:target)) .nav-item[href="#war-room"],body:has(#war-room:target) .
 /* Phase 12D.7 - restore polished selected tab glow */
 .nav-item:hover,.nav-item:focus{background:rgba(239,18,31,.13)!important;border-color:rgba(239,18,31,.80)!important;box-shadow:0 0 30px rgba(239,18,31,.62),inset 0 0 24px rgba(239,18,31,.20)!important;outline:none!important}
 body:not(:has(:target)) .nav-item[href="#war-room"],body:has(#war-room:target) .nav-item[href="#war-room"],body:has(#scorecard:target) .nav-item[href="#scorecard"],body:has(#assets:target) .nav-item[href="#assets"],body:has(#risk-console:target) .nav-item[href="#risk-console"],body:has(#copilot-log:target) .nav-item[href="#copilot-log"],body:has(#settings:target) .nav-item[href="#settings"]{background:rgba(239,18,31,.10)!important;border-color:rgba(239,18,31,.72)!important;box-shadow:0 0 28px rgba(239,18,31,.55),inset 0 0 24px rgba(239,18,31,.18)!important}
+
+/* Phase 12E.1 - top-card and Asset Bay action hotspots */
+.action-hotspots{position:fixed;inset:0;z-index:44;pointer-events:none}
+.action-hotspot{position:fixed;display:block;text-indent:-9999px;overflow:hidden;border:1px solid transparent;background:transparent;border-radius:1.0vh;pointer-events:auto;cursor:pointer;transition:.16s ease}
+.action-hotspot:hover,.action-hotspot:focus{background:rgba(239,18,31,.10);border-color:rgba(239,18,31,.72);box-shadow:0 0 28px rgba(239,18,31,.50),inset 0 0 22px rgba(239,18,31,.16);outline:none}
+.hotspot-track{left:calc(var(--mockup-left) + 29.4vh);top:25.0vh;width:28.2vh;height:11.8vh}
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 58.2vh);top:25.0vh;width:37.5vh;height:11.8vh}
+.hotspot-readiness{left:calc(var(--mockup-left) + 96.6vh);top:25.0vh;width:32.0vh;height:11.8vh}
+.hotspot-iq{left:calc(var(--mockup-left) + 130.4vh);top:25.0vh;width:33.0vh;height:11.8vh}
+.hotspot-readme{left:calc(var(--mockup-left) + 32.5vh);top:68.55vh;width:24.2vh;height:6.1vh}
+.hotspot-judge-packet{left:calc(var(--mockup-left) + 57.8vh);top:68.55vh;width:21.4vh;height:6.1vh}
+.hotspot-dashboard{left:calc(var(--mockup-left) + 79.0vh);top:68.55vh;width:21.8vh;height:6.1vh}
+.hotspot-demo-script{left:calc(var(--mockup-left) + 101.0vh);top:68.55vh;width:20.8vh;height:6.1vh}
+.hotspot-architecture{left:calc(var(--mockup-left) + 32.5vh);top:75.95vh;width:24.2vh;height:6.1vh}
+.hotspot-final-checklist{left:calc(var(--mockup-left) + 57.8vh);top:75.95vh;width:21.4vh;height:6.1vh}
+.hotspot-copilot-build-log{left:calc(var(--mockup-left) + 79.0vh);top:75.95vh;width:42.8vh;height:6.1vh}
+
+
+/* Phase 12E.2 - center action hotspot overlays */
+.hotspot-track{left:calc(var(--mockup-left) + 27.20vh)!important;top:24.15vh!important;width:28.80vh!important;height:11.85vh!important}
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 56.65vh)!important;top:23.97vh!important;width:37.80vh!important;height:11.85vh!important}
+.hotspot-readiness{left:calc(var(--mockup-left) + 96.90vh)!important;top:23.97vh!important;width:32.35vh!important;height:11.85vh!important}
+.hotspot-iq{left:calc(var(--mockup-left) + 131.50vh)!important;top:23.97vh!important;width:33.25vh!important;height:11.85vh!important}
+.hotspot-readme{left:calc(var(--mockup-left) + 32.20vh)!important;top:68.25vh!important;width:24.45vh!important;height:6.30vh!important}
+.hotspot-judge-packet{left:calc(var(--mockup-left) + 57.50vh)!important;top:68.25vh!important;width:21.75vh!important;height:6.30vh!important}
+.hotspot-dashboard{left:calc(var(--mockup-left) + 78.75vh)!important;top:68.25vh!important;width:22.10vh!important;height:6.30vh!important}
+.hotspot-demo-script{left:calc(var(--mockup-left) + 100.75vh)!important;top:68.25vh!important;width:21.05vh!important;height:6.30vh!important}
+.hotspot-architecture{left:calc(var(--mockup-left) + 32.20vh)!important;top:75.60vh!important;width:24.45vh!important;height:6.30vh!important}
+.hotspot-final-checklist{left:calc(var(--mockup-left) + 57.50vh)!important;top:75.60vh!important;width:21.75vh!important;height:6.30vh!important}
+.hotspot-copilot-build-log{left:calc(var(--mockup-left) + 78.75vh)!important;top:75.60vh!important;width:43.10vh!important;height:6.30vh!important}
+
+/* Phase 12E.3 - mm calibrated top card hotspots */
+.hotspot-track{left:calc(var(--mockup-left) + 24.00vh)!important;top:23.35vh!important;width:28.80vh!important;height:11.85vh!important}
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 58.25vh)!important;top:23.17vh!important;width:37.80vh!important;height:11.85vh!important}
+.hotspot-readiness{left:calc(var(--mockup-left) + 100.10vh)!important;top:23.17vh!important;width:32.35vh!important;height:11.85vh!important}
+.hotspot-iq{left:calc(var(--mockup-left) + 137.90vh)!important;top:23.17vh!important;width:33.25vh!important;height:11.85vh!important}
+
+/* Phase 12E.4 - top card mm recalibration */
+.hotspot-track{left:calc(var(--mockup-left) + 24.80vh)!important;top:23.75vh!important;width:28.80vh!important;height:11.85vh!important}
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 55.05vh)!important;top:23.57vh!important;width:37.80vh!important;height:11.85vh!important}
+.hotspot-readiness{left:calc(var(--mockup-left) + 96.90vh)!important;top:23.57vh!important;width:32.35vh!important;height:11.85vh!important}
+.hotspot-iq{left:calc(var(--mockup-left) + 133.10vh)!important;top:23.57vh!important;width:33.25vh!important;height:11.85vh!important}
+
+/* Phase 12E.5 - top card final micro calibration */
+.hotspot-track{left:calc(var(--mockup-left) + 24.40vh)!important;top:23.75vh!important;width:29.60vh!important;height:11.85vh!important}
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 58.25vh)!important;top:23.97vh!important;width:37.80vh!important;height:11.85vh!important}
+.hotspot-readiness{left:calc(var(--mockup-left) + 100.10vh)!important;top:23.97vh!important;width:32.35vh!important;height:11.85vh!important}
+.hotspot-iq{left:calc(var(--mockup-left) + 136.30vh)!important;top:23.97vh!important;width:33.25vh!important;height:11.85vh!important}
+
+/* Phase 12E.6 - extend top card left edges */
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 55.05vh)!important;top:23.97vh!important;width:41.00vh!important;height:11.85vh!important}
+.hotspot-readiness{left:calc(var(--mockup-left) + 96.90vh)!important;top:23.97vh!important;width:35.55vh!important;height:11.85vh!important}
+.hotspot-iq{left:calc(var(--mockup-left) + 133.10vh)!important;top:23.97vh!important;width:36.45vh!important;height:11.85vh!important}
+
+/* Phase 12E.7 - top card edge micro adjustment */
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 55.85vh)!important;top:24.37vh!important;width:40.20vh!important;height:11.45vh!important}
+.hotspot-readiness{left:calc(var(--mockup-left) + 97.70vh)!important;top:24.37vh!important;width:34.75vh!important;height:11.45vh!important}
+.hotspot-iq{left:calc(var(--mockup-left) + 134.30vh)!important;top:24.37vh!important;width:36.05vh!important;height:11.45vh!important}
+
+/* Phase 12E.8 - top edge only adjustment */
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 55.85vh)!important;top:25.17vh!important;width:40.20vh!important;height:10.65vh!important}
+.hotspot-readiness{left:calc(var(--mockup-left) + 97.70vh)!important;top:25.17vh!important;width:34.75vh!important;height:10.65vh!important}
+.hotspot-iq{left:calc(var(--mockup-left) + 134.30vh)!important;top:25.17vh!important;width:36.05vh!important;height:10.65vh!important}
+
+/* Phase 12E.9 - top card upward height expansion */
+.hotspot-launch-gate{left:calc(var(--mockup-left) + 55.85vh)!important;top:23.77vh!important;width:40.20vh!important;height:12.05vh!important}
+.hotspot-readiness{left:calc(var(--mockup-left) + 97.70vh)!important;top:23.77vh!important;width:34.75vh!important;height:12.05vh!important}
+.hotspot-iq{left:calc(var(--mockup-left) + 134.30vh)!important;top:23.77vh!important;width:36.05vh!important;height:12.05vh!important}
+
+/* Phase 12E.10 - Asset Bay shift down */
+.hotspot-readme{left:calc(var(--mockup-left) + 32.20vh)!important;top:69.45vh!important;width:24.45vh!important;height:6.30vh!important}
+.hotspot-judge-packet{left:calc(var(--mockup-left) + 57.50vh)!important;top:69.45vh!important;width:21.75vh!important;height:6.30vh!important}
+.hotspot-dashboard{left:calc(var(--mockup-left) + 78.75vh)!important;top:69.45vh!important;width:22.10vh!important;height:6.30vh!important}
+.hotspot-demo-script{left:calc(var(--mockup-left) + 100.75vh)!important;top:69.45vh!important;width:21.05vh!important;height:6.30vh!important}
+.hotspot-architecture{left:calc(var(--mockup-left) + 32.20vh)!important;top:76.80vh!important;width:24.45vh!important;height:6.30vh!important}
+.hotspot-final-checklist{left:calc(var(--mockup-left) + 57.50vh)!important;top:76.80vh!important;width:21.75vh!important;height:6.30vh!important}
+.hotspot-copilot-build-log{left:calc(var(--mockup-left) + 78.75vh)!important;top:76.80vh!important;width:43.10vh!important;height:6.30vh!important}
+
+/* Phase 12E.11 - Asset Bay micro calibration */
+.hotspot-readme{left:calc(var(--mockup-left) + 29.00vh)!important;top:69.45vh!important;width:24.45vh!important;height:6.30vh!important}
+.hotspot-judge-packet{left:calc(var(--mockup-left) + 56.30vh)!important;top:69.45vh!important;width:21.75vh!important;height:5.90vh!important}
+.hotspot-dashboard{left:calc(var(--mockup-left) + 79.95vh)!important;top:69.45vh!important;width:21.30vh!important;height:5.90vh!important}
+.hotspot-demo-script{left:calc(var(--mockup-left) + 103.95vh)!important;top:69.45vh!important;width:21.05vh!important;height:5.90vh!important}
+.hotspot-architecture{left:calc(var(--mockup-left) + 27.40vh)!important;top:77.20vh!important;width:24.45vh!important;height:6.30vh!important}
+.hotspot-final-checklist{left:calc(var(--mockup-left) + 55.10vh)!important;top:77.20vh!important;width:23.35vh!important;height:6.30vh!important}
+.hotspot-copilot-build-log{left:calc(var(--mockup-left) + 79.55vh)!important;top:77.20vh!important;width:43.10vh!important;height:6.30vh!important}
+
+/* Phase 12E.12 - Asset Bay second micro calibration */
+.hotspot-readme{left:calc(var(--mockup-left) + 28.20vh)!important;top:69.45vh!important;width:25.25vh!important;height:5.90vh!important}
+.hotspot-judge-packet{left:calc(var(--mockup-left) + 55.50vh)!important;top:69.85vh!important;width:22.55vh!important;height:5.90vh!important}
+.hotspot-dashboard{left:calc(var(--mockup-left) + 79.95vh)!important;top:69.85vh!important;width:21.30vh!important;height:5.90vh!important}
+.hotspot-demo-script{left:calc(var(--mockup-left) + 103.15vh)!important;top:69.85vh!important;width:21.05vh!important;height:5.90vh!important}
+.hotspot-architecture{left:calc(var(--mockup-left) + 27.80vh)!important;top:77.20vh!important;width:26.05vh!important;height:6.30vh!important}
+.hotspot-copilot-build-log{left:calc(var(--mockup-left) + 79.95vh)!important;top:77.20vh!important;width:43.50vh!important;height:6.70vh!important}
+
+/* Phase 12E.13 - Asset Bay third micro calibration */
+.hotspot-readme{left:calc(var(--mockup-left) + 27.80vh)!important;top:69.85vh!important;width:26.05vh!important;height:5.90vh!important}
+.hotspot-judge-packet{left:calc(var(--mockup-left) + 55.50vh)!important;top:69.85vh!important;width:22.95vh!important;height:5.90vh!important}
+.hotspot-demo-script{left:calc(var(--mockup-left) + 102.75vh)!important;top:69.85vh!important;width:21.45vh!important;height:5.90vh!important}
+.hotspot-architecture{left:calc(var(--mockup-left) + 27.80vh)!important;top:77.20vh!important;width:26.05vh!important;height:6.70vh!important}
+.hotspot-final-checklist{left:calc(var(--mockup-left) + 55.10vh)!important;top:77.20vh!important;width:23.35vh!important;height:6.70vh!important}
+.hotspot-copilot-build-log{left:calc(var(--mockup-left) + 79.95vh)!important;top:77.20vh!important;width:43.90vh!important;height:6.70vh!important}

@@ -71,6 +71,28 @@ def _asset_data_uri(filename: str) -> str:
     encoded = base64.b64encode(path.read_bytes()).decode("ascii")
     return "data:image/png;base64," + encoded
 
+def _hotspot(label: str, href: str, class_name: str) -> str:
+    attrs = "href=\"{}\" class=\"action-hotspot {}\" title=\"{}\" target=\"_blank\" rel=\"noopener\"".format(escape(href, quote=True), escape(class_name, quote=True), escape(label, quote=True))
+    return _tag("a", label, attrs)
+
+
+def _dashboard_hotspots() -> str:
+    links = [
+        ("Track overview", "../../README.md", "hotspot-track"),
+        ("Launch packet", "launch_packet.md", "hotspot-launch-gate"),
+        ("Release manifest", "release_manifest.json", "hotspot-readiness"),
+        ("Microsoft IQ architecture", "../../docs/architecture.md", "hotspot-iq"),
+        ("README", "../../README.md", "hotspot-readme"),
+        ("Judge packet", "judge_packet.md", "hotspot-judge-packet"),
+        ("Dashboard", "project_readiness_dashboard.html", "hotspot-dashboard"),
+        ("Demo script", "../../docs/demo_video_script.md", "hotspot-demo-script"),
+        ("Architecture doc", "../../docs/architecture.md", "hotspot-architecture"),
+        ("Final checklist", "../../docs/final_submission_checklist.md", "hotspot-final-checklist"),
+        ("Copilot build log", "../../docs/copilot_build_log.md", "hotspot-copilot-build-log"),
+    ]
+    items = "".join(_hotspot(label, href, class_name) for label, href, class_name in links)
+    return _tag("nav", items, "class=\"action-hotspots\" aria-label=\"dashboard action links\"")
+
 
 def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dict[str, Any]) -> str:
     verdict = escape(str(report.get("verdict", "UNKNOWN")))
@@ -113,9 +135,10 @@ def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dic
     asset_bay = _tag("section", _tag("h2", "Asset Bay") + _tag("div", _artifact_cards(profile), "class=\"artifact-grid\""), "id=\"assets\" class=\"card\"")
     action = _tag("section", _tag("h2", "Next Safest Action") + _tag("p", next_action, "class=\"tagline\""), "id=\"settings\" class=\"card\"")
     footer = _tag("div", "Powered by Citadel AI // synthetic demo data only // generated locally", "class=\"footer\"")
+    hotspots = _dashboard_hotspots()
     nav = _tag("aside", _tag("div", "CITADEL-AI", "class=\"brand-mark\"") + _tag("a", "War Room", "href=\"#war-room\" class=\"nav-item active\"") + _tag("a", "Scorecard", "href=\"#scorecard\" class=\"nav-item\"") + _tag("a", "Assets", "href=\"#assets\" class=\"nav-item\"") + _tag("a", "Risk Console", "href=\"#risk-console\" class=\"nav-item\"") + _tag("a", "Copilot Log", "href=\"#copilot-log\" class=\"nav-item\"") + _tag("a", "Settings", "href=\"#settings\" class=\"nav-item\""), "class=\"side-nav\"")
     content = _tag("main", hero + cards + scorecard + lens + intelligence + asset_bay + action + footer, "class=\"wrap\"")
-    main = _tag("div", nav + content, "class=\"shell\"")
+    main = _tag("div", nav + hotspots + content, "class=\"shell\"")
     return "<!doctype html>\n" + _tag("html", _tag("head", head) + _tag("body", main), "lang=\"en\"") + "\n"
 
 
