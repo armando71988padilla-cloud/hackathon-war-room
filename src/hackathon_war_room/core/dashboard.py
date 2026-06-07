@@ -56,6 +56,15 @@ def _artifact_cards(profile: dict[str, Any]) -> str:
     return "".join(cards)
 
 
+def _intel_panel(title: str, body: str, proof: str) -> str:
+    content = (
+        _tag("div", title, "class=\"label\"")
+        + _tag("h2", escape(body))
+        + _tag("p", escape(proof), "class=\"tagline\"")
+    )
+    return _tag("div", content, "class=\"card ok\"")
+
+
 def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dict[str, Any]) -> str:
     verdict = escape(str(report.get("verdict", "UNKNOWN")))
     score = escape(str(report.get("readiness_score", 0)))
@@ -70,10 +79,24 @@ def render_dashboard(profile: dict[str, Any], rules: dict[str, Any], report: dic
     cards = _tag("section", _tag("div", _tag("div", "Launch Gate", "class=\"label\"") + _tag("div", verdict, "class=\"big verdict\""), "class=\"card launch\"") + _tag("div", _tag("div", "Readiness", "class=\"label\"") + _tag("div", score + "/100", "class=\"big\""), "class=\"card\"") + _tag("div", _tag("div", "Microsoft IQ", "class=\"label\"") + _tag("div", iq, "class=\"big\""), "class=\"card ok\""), "class=\"cards\"")
     scorecard = _tag("section", _tag("div", _tag("h2", "Scorecard") + _score_rows(report.get("category_scores", {})), "class=\"card\"") + _tag("div", _tag("h2", "Readiness Gauge") + _tag("div", _tag("strong", score), "class=\"score-ring\""), "class=\"card\""), "class=\"grid\"")
     lens = _tag("section", _tag("div", _tag("h2", "Judge Lens") + _tag("ul", _li(report.get("strengths", [])), "class=\"list\""), "class=\"card\"") + _tag("div", _tag("h2", "Risk Console") + _tag("ul", _li(report.get("risks", [])), "class=\"list\""), "class=\"card risk\""), "class=\"grid\"")
+    intelligence = _tag(
+        "section",
+        _intel_panel(
+            "Microsoft IQ",
+            "Foundry IQ Alignment",
+            "Grounds recommendations in project profile, rules, judging criteria, artifact status, and safety signals without claiming live Foundry deployment.",
+        )
+        + _intel_panel(
+            "AI Assisted Development",
+            "Copilot Battle Log",
+            "Documents the AI assisted build process behind the CLI, scoring engine, smoke tests, dashboard, README, and launch bundle.",
+        ),
+        "class=\"grid\"",
+    )
     asset_bay = _tag("section", _tag("h2", "Asset Bay") + _tag("div", _artifact_cards(profile), "class=\"artifact-grid\""), "class=\"card\"")
     action = _tag("section", _tag("h2", "Next Safest Action") + _tag("p", next_action, "class=\"tagline\""), "class=\"card\"")
     footer = _tag("div", "Hackathon War Room // synthetic demo data only // generated locally", "class=\"footer\"")
-    main = _tag("main", hero + cards + scorecard + lens + asset_bay + action + footer, "class=\"wrap\"")
+    main = _tag("main", hero + cards + scorecard + lens + intelligence + asset_bay + action + footer, "class=\"wrap\"")
     return "<!doctype html>\n" + _tag("html", _tag("head", head) + _tag("body", main), "lang=\"en\"") + "\n"
 
 
